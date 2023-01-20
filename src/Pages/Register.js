@@ -18,10 +18,11 @@ const [password, setPassword] = useState("");
 
 const handlePassword = (e) => {
     setPassword(e.target.value);
+    
 }
 const handleEmail = (e) => {
     setEmail(e.target.value);
-   // console.log(setEmail)
+  
 }
 
 const dispatch = useDispatch()
@@ -32,10 +33,12 @@ const handleRegis = () => {
         password: password,
         role: "admin"
     }
+    dispatch(regisAction(payload));
     console.log(payload)
 
     dispatch(regisAction(payload))
 }
+
 
 
     return (
