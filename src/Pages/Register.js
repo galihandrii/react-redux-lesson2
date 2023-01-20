@@ -4,25 +4,28 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "./Register.css"
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
+import { regisAction } from "../Redux/Action/regisaction";
 
 
 
 const Register = () => {
-const {regisReducer} = useSelector((state)=>state);
-//console.log(regisReducer.message);
+const state = useSelector((rootReducers)=>rootReducers);
+//console.log(state);
 
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
-const navigate = useNavigate();
+//const navigate = useNavigate();
+const dispatch = useDispatch();
 
 
 const handlePassword = (e) => {
     setPassword(e.target.value);
+    
 }
 const handleEmail = (e) => {
     setEmail(e.target.value);
-   // console.log(setEmail)
+  
 }
 
 const handleRegis = ( ) => {
@@ -31,8 +34,10 @@ const handleRegis = ( ) => {
         password: password,
         role: "admin"
     }
+    dispatch(regisAction(payload));
     console.log(payload)
 }
+
 
 
     return (
@@ -61,7 +66,7 @@ const handleRegis = ( ) => {
     </Form>
             </div>
             <div>
-                {regisReducer.message.length ? <h1>{regisReducer.message}</h1>:null} 
+                {state.regis.message.length ? <h1>{state.regis.message}</h1>:null} 
             </div>
         </div>
     )
