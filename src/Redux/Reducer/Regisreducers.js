@@ -1,4 +1,4 @@
- const initialState = {
+const initialState = {
     message:"",
 }
 
@@ -9,8 +9,8 @@ export const regisReducer = ( state = initialState, action) => {
                 ...initialState,
                 message:action.payload
             };
-               
+
         default:
             return state;
-       }
+    }
 }
