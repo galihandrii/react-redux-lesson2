@@ -9,8 +9,8 @@ export const regisReducer = ( state = loginState, action) => {
                 ...loginState,
                 message:action.payload
             };
-               
+
         default:
             return state;
-       }
+    }
 }

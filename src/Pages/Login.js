@@ -8,23 +8,23 @@ import { useEffect,useState } from "react";
 
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const handleEmail = (e) => {
-      setEmail(e.target.value)
-  }
-
-  const [password, setPassword] = useState("")
-  const handlePassword = (e) => { 
-      setPassword(e.target.value)
-  }
-
-  const dispatch = useDispatch()
-
-  const handleLogin = () => {
-    const payLoad = {
-        email: email,
-        password: password
+    const [email, setEmail] = useState("")
+    const handleEmail = (e) => {
+        setEmail(e.target.value)
     }
+
+    const [password, setPassword] = useState("")
+    const handlePassword = (e) => { 
+        setPassword(e.target.value)
+    }
+
+    const dispatch = useDispatch()
+
+    const handleLogin = () => {
+        const payLoad = {
+            email: email,
+            password: password
+        }
 
     dispatch(loginAction(payLoad))
 
@@ -70,26 +70,29 @@ const handleLogout = () => {
                     ):(
                         <div className="register-section">
                             <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                           <Form.Label>Email address</Form.Label>
-                          <Form.Control onChange={handleEmail} type="email" placeholder="Enter email" />
-                         <Form.Text className="text-muted">
-                          We'll never share your email with anyone else.
-                        </Form.Text>
-                          </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-
-            </div>
-          
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control onChange={handleEmail} type="email" placeholder="Enter email" />
+                                    <Form.Text className="text-muted">
+                                    We'll never share your email with anyone else.
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control onChange={handlePassword} type="password" placeholder="Password" />
+                                </Form.Group>
+                                <Button onClick={handleLogin} variant="primary">
+                                    Login
+                                </Button>
+                            </Form>
+                        </div>
+                    )
+                }
             
+            </div>
+            {
+                isLogin ? <h1>Selamat datang di Ind****** selamat belanja</h1>: <p>silahkan login</p>
+            }
             
         </div>
     )
