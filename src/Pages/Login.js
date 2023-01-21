@@ -5,9 +5,11 @@ import "./Login.css"
 import { useDispatch } from "react-redux";
 import { loginAction } from "../Redux/Action/loginaction";
 import { useEffect,useState } from "react";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("")
   const handleEmail = (e) => {
       setEmail(e.target.value)
@@ -25,17 +27,19 @@ const Login = () => {
         email: email,
         password: password
     }
-
+    console.log(payLoad);
     dispatch(loginAction(payLoad))
 
-    // axios
-    //     .post("https://bootcamp-rent-cars.herokuapp.com/admin/auth/login", payLoad)
-    //     .then((ress) => {
-    //         console.log(ress)
-    //         localStorage.setItem("token", ress.data.access_token);
-    //         navigate("/discovery")
-    //     })
-    //     .catch((err) => console.log(err.message))
+     axios
+         .post("https://bootcamp-rent-cars.herokuapp.com/admin/auth/login", payLoad)
+         .then((ress) => {
+             console.log(ress)
+             localStorage.setItem("token", ress.data.access_token);
+             
+         })
+         .catch((err) => console.log(err.message))
+
+         
 }
 
 const [isLogin, setIsLogin] = useState(false)
@@ -46,7 +50,18 @@ useEffect(() => {
     } else {
         setIsLogin(true)
     }
+
+    
 },[])
+
+const handleRedirect = () => {
+    if (!!setIsLogin){
+       //navigate('/')
+    }
+}
+useEffect(()=>{
+    handleRedirect();
+  },[]);
 
 const handleLogout = () => {
     localStorage.removeItem("token")
@@ -63,8 +78,8 @@ const handleLogout = () => {
             {
                     isLogin ? (
                         <div className="register-section">
-                           <Button onClick={handleLogout} variant="primary" type="submit">
-                              Submit
+                           <Button onClick={handleLogout} variant="primary" >
+                              Logut kah?
                             </Button>
                         </div>
                     ):(
@@ -82,7 +97,7 @@ const handleLogout = () => {
                           <Form.Label>Password</Form.Label>
                          <Form.Control onChange={handlePassword} type="password" placeholder="Password" />
                           </Form.Group>
-                          <Button onClick={handleLogin} variant="primary" type="submit">
+                          <Button onClick={handleLogin} variant="primary">
                               Login
                             </Button>
                            </Form>
@@ -92,7 +107,7 @@ const handleLogout = () => {
             
             </div>
             {
-                isLogin ? <h1>Selamat datang di Ind****** selamat belanja</h1>: <p>silahkan login</p>
+                isLogin ? <h1>Selamat anda sudah Login, Silahkan lihat2 web kami!</h1>: <p>silahkan login</p>
             }
             
         </div>

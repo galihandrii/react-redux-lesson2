@@ -1,10 +1,10 @@
 const loginState = {
-    message:"",
+    message:"nice",
 }
 
-export const regisReducer = ( state = loginState, action) => {
+export const loginReducer = ( state = loginState, action) => {
     switch (action.type) {
-        case "REGIS":
+        case "LOGIN":
             return {
                 ...loginState,
                 message:action.payload

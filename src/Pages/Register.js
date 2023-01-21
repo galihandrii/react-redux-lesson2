@@ -3,9 +3,10 @@ import Navbarcom from "../components/Navbar";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "./Register.css"
-import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { regisAction } from "../Redux/Action/regisaction";
+import { regisReducer } from "../Redux/Reducer/Regisreducers";
 
 
 
@@ -15,8 +16,29 @@ const state = useSelector((rootReducers)=>rootReducers);
 
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
-//const navigate = useNavigate();
+const navigate = useNavigate();
 const dispatch = useDispatch();
+
+
+useEffect(()=>{
+  handleRedirect();
+},[state.regis.message]);
+
+//navigate to login page after register
+const handleRedirect = () => {
+  //delay 2 second navigate buat show message 'created'
+  setTimeout(()=> {
+    if (!!state.regis.message.length){
+      navigate('/Login')
+    }
+    //mengkosongkan state message supaya bisa akses halaman register
+    dispatch({
+      type:'REMOVE_MESSAGE',
+      payload:'',
+    })
+    
+  }, 2000);
+};
 
 
 const handlePassword = (e) => {
@@ -36,6 +58,7 @@ const handleRegis = ( ) => {
     }
     dispatch(regisAction(payload));
     console.log(payload)
+    
 }
 
 
@@ -60,7 +83,7 @@ const handleRegis = ( ) => {
         <Form.Label>Password</Form.Label>
         <Form.Control onChange={handlePassword} type="password" placeholder="Password" />
       </Form.Group>
-      <Button onClick={handleRegis} variant="primary" type="submit">
+      <Button onClick={handleRegis} variant="primary">
         Submit
       </Button>
     </Form>
