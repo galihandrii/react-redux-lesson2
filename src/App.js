@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Home from './Pages/Home';
+import Discovery from './Pages/Discovery';
+import ProtectedRoute from './hoc/Protectedroute';
 
 function App() {
   return (
@@ -11,6 +13,10 @@ function App() {
       <Route path='/' element={<Home/>}/>;
       <Route path='/Login' element={<Login/>}/>
       <Route path='/Register' element={<Register/>}/>
+      <Route  element={<ProtectedRoute/>}>
+      <Route path='/Discovery' element={<Discovery/>}/>
+      </Route>
+      
     </Routes>
   );
 }
