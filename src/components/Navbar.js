@@ -9,10 +9,12 @@ import { handleLogout } from '../Redux/Action/authAction';
 
 const Navbarcom = () => {
   const token = localStorage.getItem("token")
+  
   const dispatch = useDispatch()
   const handleIsLogout = () => {
       dispatch(handleLogout())
   }
+  
 
 
     return (
@@ -27,9 +29,10 @@ const Navbarcom = () => {
             <Nav.Link href='/Register'>Register</Nav.Link>
             {
                         token != null ? (
-                            <Nav.Link>
-                                <button onClick={handleIsLogout}>Log Out</button>
+                            <Nav.Link onClick={handleIsLogout}>
+                                Log Out
                             </Nav.Link>
+
                         ):null
                     }
             

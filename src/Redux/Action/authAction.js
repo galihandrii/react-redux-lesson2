@@ -7,7 +7,7 @@ export const handleLoginAction = (payload) => dispatch => {
         .then((ress) => {
             dispatch({
                 type: "LOGIN",
-                payload: ress.data.email
+                payload: true,
             })
             console.log(ress)
             localStorage.setItem("token", ress.data.access_token)

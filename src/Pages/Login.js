@@ -39,7 +39,7 @@ const Login = () => {
 const handleRedirect = () => {
     setTimeout(()=>{
         if (state.auth.message === true){
-            navigate('/')
+            navigate('/Discovery')
          }
     },1000);
     
