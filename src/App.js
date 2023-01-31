@@ -6,6 +6,7 @@ import Register from './Pages/Register';
 import Home from './Pages/Home';
 import Discovery from './Pages/Discovery';
 import ProtectedRoute from './hoc/Protectedroute';
+import AddCar from './Pages/AddCar';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path='/Register' element={<Register/>}/>
       <Route  element={<ProtectedRoute/>}>
       <Route path='/Discovery' element={<Discovery/>}/>
+      <Route path='/add-car' element={<AddCar/>}/>
       </Route>
       
     </Routes>
