@@ -43,19 +43,19 @@ const AddCar = () => {
 
     const handleRedirect = () => {
         setTimeout(() => {
-            if(state.listCar.carsData.message !== ""){
+            if(state.listCar.message !== ""){
                 navigate("/Discovery")
             }
         }, 1000);
     }
 
     useEffect(() => {
-        if(state.listCar.carsData.message !== ""){
-            alert(state.listCar.carsData.message)
+        if(state.listCar.message !== ""){
+            alert(state.listCar.message)
         }
         handleRedirect()
         // eslint-disable-next-line
-    }, [state.listCar.carsData.message])
+    }, [state.listCar.message])
     return (  
         <div>
             <div>
