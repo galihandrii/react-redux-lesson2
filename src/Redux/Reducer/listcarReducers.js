@@ -2,6 +2,7 @@ const initialState = {
     carsData : [] ,
     detailCar : {},
     message: '',
+    
 }
 
 export const listcarReducer = (state = initialState,action) => {
@@ -26,11 +27,21 @@ switch (action.type) {
                     ...initialState,
                     message: action.payload,
                 }
-     case 'ADD_CAR':
+    case 'ADD_CAR':
                     return {
                         ...initialState,
                         message: action.payload,
                     }
+    case 'EDIT_CAR':
+        return {
+            ...initialState,
+             detailCar: action.payload,
+         }                
+    case 'GET_EDIT_CAR':
+            return {
+                ...initialState,
+                 detailCar: action.payload,
+             }                     
 
 
     default:

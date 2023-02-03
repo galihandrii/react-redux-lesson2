@@ -98,3 +98,23 @@ export const handleAddCar = (formData) => dispatch => {
             console.log(err);
         })
 }
+
+ export const getDataEdit = (id) => dispatch => {
+    const token = localStorage.getItem("token")
+    const config = {
+        headers : {
+            access_token : token
+        },
+    }
+
+    axios.get(`https://bootcamp-rent-cars.herokuapp.com/admin/car/${id}`,config)
+    .then((res)=>{
+        console.log(res.data)
+        dispatch({
+            type:'GET_EDIT_CAR',
+            payload:res.data.name
+        })
+    })
+    .catch((err)=>console.log(err.message))
+
+}

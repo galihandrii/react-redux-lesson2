@@ -108,6 +108,11 @@ const handleDeletes = (id) => {
                                         <Link to={`/edit-car/${item.id}`}>
                                         <Button variant="outline-info">edit</Button>
                                         </Link>
+                                    </div> 
+                                    <div>
+                                    <Link to={`/detail-car/${item.id}`}>
+                                    <Button variant="outline-warning">Detail</Button> 
+                                    </Link>
                                     </div>
 
                                 </div>
